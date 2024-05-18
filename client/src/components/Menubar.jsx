@@ -245,6 +245,16 @@ export default function Header() {
 
                         <a href="" className="text-white p-4">News</a>
                         <a href="" className="text-white p-4">Student Life</a>
+                        <div className="p-4 flex">
+                            <a href="" className="p-4 px-8 text-white bg-red-600">
+                                Apply Now
+                            </a>
+                        </div>
+                        <div className="p-4 pb-6 flex">
+                            <a href="" className="p-4 px-8 text-white bg-blue-800">
+                                Ask Us
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
