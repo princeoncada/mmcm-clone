@@ -1,5 +1,6 @@
 import { useState } from "react";
-import SubMenu from "./menubar/SubMenu.jsx";
+import MobileMenu from "./menubar/MobileMenu.jsx";
+import DesktopMenu from "./menubar/DesktopMenu.jsx";
 
 export default function MenuBar() {
     const [menu, setMenu] = useState(false);
@@ -102,22 +103,18 @@ export default function MenuBar() {
                     <img src="./mmcm-logo2.png" alt="" />
                 </a>
                 <div className="hidden lg:flex justify-center items-center font-medium z-20">
-                    <div>
-                        <a href="" onMouseEnter={() => { handleBorderOnEnter("about") }} onMouseLeave={() => { handleBorderOnLeave("about") }} className={`p-4 transition-border-color ease-in-out duration-300 border-b-4 ${ subMenu["about"] ? "border-gray-700" : "border-white" }`}>About <i className='bx bx-caret-down'></i></a>
-                        <div className={`${ subMenu["about"] ? "opacity-100" : "opacity-0 invisible" } flex flex-col absolute transition-all ease-out duration-300`} style={{
-                            transform: 'translateY(1.15rem)'
-                        }}>
-                            <a onMouseEnter={() => { handleBorderOnEnter("about") }} onMouseLeave={() => { handleBorderOnLeave("about") }}  href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                Mapua
-                            </a>
-                            <a onMouseEnter={() => { handleBorderOnEnter("about") }} onMouseLeave={() => { handleBorderOnLeave("about") }} href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                Meet the Administration
-                            </a>
-                            <a onMouseEnter={() => { handleBorderOnEnter("about") }} onMouseLeave={() => { handleBorderOnLeave("about") }} href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                Campus Facilities
-                            </a>
+
+                    <DesktopMenu stateKey={ "about" } state={ subMenu } handlerEnter={ handleBorderOnEnter } handlerLeave={ handleBorderOnLeave }>
+                        <div>
+                            Mapua
                         </div>
-                    </div>
+                        <div>
+                            Meet the Administration
+                        </div>
+                        <div>
+                            Campus Facilities
+                        </div>
+                    </DesktopMenu>
 
                     <div>
                         <a href="" onMouseEnter={() => { handleBorderOnEnter("admission") }} onMouseLeave={() => { handleBorderOnLeave("admission") }} className={`p-4 transition-border-color ease-in-out duration-300 border-b-4 ${ subMenu["admission"] ? "border-gray-700" : "border-white"}`}>Admission <i className='bx bx-caret-down'></i></a>
@@ -192,154 +189,154 @@ export default function MenuBar() {
                 <div className={`relative  h-0 w-screen bg-opacity-90 transition ease-in-out duration-300 text-sm ${menu ? "" : "-translate-x-full"} max-w-full z-20`}>
                     <div className="flex flex-col bg-gray-900">
                     
-                        <SubMenu href="#" more={true} label="About" stateKey="about" state={subMenu} handler={handleSubMenu} >
+                        <MobileMenu href="#" more={true} label="About" stateKey="about" state={subMenu} handler={handleSubMenu} >
                             About
-                            <SubMenu href="#">
+                            <MobileMenu href="#">
                                 Mapua
-                            </SubMenu>
-                            <SubMenu href="#">
+                            </MobileMenu>
+                            <MobileMenu href="#">
                                 Meet the Administration
-                            </SubMenu>
-                            <SubMenu href="#">
+                            </MobileMenu>
+                            <MobileMenu href="#">
                                 Campus Facilities
-                            </SubMenu>
-                        </SubMenu>
+                            </MobileMenu>
+                        </MobileMenu>
 
-                        <SubMenu href="#" more={true} stateKey="admission" state={subMenu} handler={handleSubMenu} >
+                        <MobileMenu href="#" more={true} stateKey="admission" state={subMenu} handler={handleSubMenu} >
                             Admissions
-                            <SubMenu href="#">
+                            <MobileMenu href="#">
                                 Frequently Asked Questions
-                            </SubMenu>
-                            <SubMenu href="#">
+                            </MobileMenu>
+                            <MobileMenu href="#">
                                 Protocols for Limited Face-to-Face Classes
-                            </SubMenu>
-                            <SubMenu href="#">
+                            </MobileMenu>
+                            <MobileMenu href="#">
                                 Scholarships
-                            </SubMenu>
-                            <SubMenu href="#">
+                            </MobileMenu>
+                            <MobileMenu href="#">
                                 Student Testimonies
-                            </SubMenu>
-                        </SubMenu>
+                            </MobileMenu>
+                        </MobileMenu>
 
-                        <SubMenu href="#" more={true} stateKey="program" state={subMenu} handler={handleSubMenu} >
+                        <MobileMenu href="#" more={true} stateKey="program" state={subMenu} handler={handleSubMenu} >
                             Programs
-                            <SubMenu href="#">
+                            <MobileMenu href="#">
                                 Junior High School (JHS)
-                            </SubMenu>
-                            <SubMenu href="#" more={true} stateKey="shs" state={programMenu} handler={handleProgramMenu} >
+                            </MobileMenu>
+                            <MobileMenu href="#" more={true} stateKey="shs" state={programMenu} handler={handleProgramMenu} >
                                 Senior High School (SHS)
-                                <SubMenu>
+                                <MobileMenu>
                                     Humanities and Social Sciences
-                                </SubMenu>
-                                <SubMenu>
+                                </MobileMenu>
+                                <MobileMenu>
                                     Information and Communications Technology
-                                </SubMenu>
-                                <SubMenu>
+                                </MobileMenu>
+                                <MobileMenu>
                                     Science, Technology, Engineering, and Mathematics
-                                </SubMenu>
-                            </SubMenu>
-                            <SubMenu href="#" more={true} stateKey="college" state={programMenu} handler={handleProgramMenu} >
+                                </MobileMenu>
+                            </MobileMenu>
+                            <MobileMenu href="#" more={true} stateKey="college" state={programMenu} handler={handleProgramMenu} >
                                 College
-                                <SubMenu href="#" more={true} stateKey="more_atycb" state={collegeMenu} handler={handleCollegeMenu}>
+                                <MobileMenu href="#" more={true} stateKey="more_atycb" state={collegeMenu} handler={handleCollegeMenu}>
                                     Alfonso T. Yuchengco College of Business
-                                    <SubMenu>
+                                    <MobileMenu>
                                         Accountancy
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Entrepreneurship
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Management Accounting
-                                    </SubMenu>
-                                </SubMenu>
-                                <SubMenu href="#" more={true} stateKey="more_cas" state={collegeMenu} handler={handleCollegeMenu}>
+                                    </MobileMenu>
+                                </MobileMenu>
+                                <MobileMenu href="#" more={true} stateKey="more_cas" state={collegeMenu} handler={handleCollegeMenu}>
                                     College of Arts and Science
-                                    <SubMenu>
+                                    <MobileMenu>
                                         Biology
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Communication
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Multimedia Arts
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Psychology
-                                    </SubMenu>
-                                </SubMenu>
-                                <SubMenu href="#" more={true} stateKey="more_ccis" state={collegeMenu} handler={handleCollegeMenu}>
+                                    </MobileMenu>
+                                </MobileMenu>
+                                <MobileMenu href="#" more={true} stateKey="more_ccis" state={collegeMenu} handler={handleCollegeMenu}>
                                     College of Computer and Information Science
-                                    <SubMenu>
+                                    <MobileMenu>
                                         Computer Science
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Entertainment and Multimedia Computing
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Information Systems
-                                    </SubMenu>
-                                </SubMenu>
-                                <SubMenu href="#" more={true} stateKey="more_cea" state={collegeMenu} handler={handleCollegeMenu}>
+                                    </MobileMenu>
+                                </MobileMenu>
+                                <MobileMenu href="#" more={true} stateKey="more_cea" state={collegeMenu} handler={handleCollegeMenu}>
                                     College of Engineering and Architecture
-                                    <SubMenu>
+                                    <MobileMenu>
                                         Architecture
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Chemical Engineering
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Civil Engineering
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Computer Engineering
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Electrical Engineering
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Electronics Engineering
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Industrial Engineering
-                                    </SubMenu>
-                                    <SubMenu>
+                                    </MobileMenu>
+                                    <MobileMenu>
                                         Mechanical Engineering
-                                    </SubMenu>
-                                </SubMenu>
-                                <SubMenu>
+                                    </MobileMenu>
+                                </MobileMenu>
+                                <MobileMenu>
                                     College of Health Sciences
-                                </SubMenu>
-                                <SubMenu>
+                                </MobileMenu>
+                                <MobileMenu>
                                     MMCM Virtual Lifelong Learning Program
-                                </SubMenu>
-                            </SubMenu>
-                        </SubMenu>
+                                </MobileMenu>
+                            </MobileMenu>
+                        </MobileMenu>
 
-                        <SubMenu href="#" more={true} stateKey="office" state={subMenu} handler={handleSubMenu} >
+                        <MobileMenu href="#" more={true} stateKey="office" state={subMenu} handler={handleSubMenu} >
                             Offices
-                            <SubMenu href="#">
+                            <MobileMenu href="#">
                                 Registrar
-                            </SubMenu>
-                            <SubMenu href="#">
+                            </MobileMenu>
+                            <MobileMenu href="#">
                                 Treasury
-                            </SubMenu>
-                            <SubMenu href="#">
+                            </MobileMenu>
+                            <MobileMenu href="#">
                                 Clinic
-                            </SubMenu>
-                            <SubMenu href="#">
+                            </MobileMenu>
+                            <MobileMenu href="#">
                                 Guidance and Counseling
-                            </SubMenu>
-                            <SubMenu href="#">
+                            </MobileMenu>
+                            <MobileMenu href="#">
                                 Lifelong Learning
-                            </SubMenu>
-                        </SubMenu>
+                            </MobileMenu>
+                        </MobileMenu>
 
-                        <SubMenu href="#">
+                        <MobileMenu href="#">
                             News
-                        </SubMenu>
-                        <SubMenu href="#">
+                        </MobileMenu>
+                        <MobileMenu href="#">
                             Student Life
-                        </SubMenu>
+                        </MobileMenu>
 
                         <div className="p-4 flex">
                             <a href="" className="py-2 px-8 text-white bg-red-600">

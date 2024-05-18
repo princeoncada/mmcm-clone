@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export default function SubMenu({ href, more=false, stateKey, state, handler, children }) {
+export default function MobileMenu({ href, more=false, stateKey, state, handler, children }) {
     return (
         <>
             <div className="flex flex-row items-center pr-3">
