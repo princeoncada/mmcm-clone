@@ -10,6 +10,12 @@ export default {
       transitionProperty: {
         'width': 'width',
         'height': 'height',
+        //border color
+        'border-color': 'border-color',
+        //display
+        'display': 'display',
+        //visibility
+        'visibility': 'visibility',
       },
     },
   },
