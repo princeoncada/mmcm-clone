@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Hero() {
     const [button, setButton] = useState(false);
@@ -29,8 +29,13 @@ export default function Hero() {
         handleButton();
     };
 
+    useEffect(() => {
+        const timer = setTimeout(handleNext, 15000);
+        return () => clearTimeout(timer);
+    }, [currentIndex]);
+
     return (
-        <div className="relative flex overflow-hidden" style={{ height: '55vw' }}>
+        <div className="relative flex overflow-hidden mt-12" style={{ height: '55vw'}}>
             <button
                 className="absolute left-0 h-full bg-slate-200 bg-opacity-30 z-10 flex items-center justify-center"
                 onClick={handlePrevious}

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { useState } from "react";
 import MobileMenu from "./menubar/MobileMenu.jsx";
 import DesktopMenu from "./menubar/DesktopMenu.jsx";
@@ -17,6 +18,10 @@ export default function MenuBar() {
     const [programMenu, setProgramMenu] = useState({
         shs: false,
         college: false
+    });
+
+    const [cslMenu, setCslMenu] = useState({
+        csl: false
     });
 
     const [collegeMenu, setCollegeMenu] = useState({
@@ -58,7 +63,14 @@ export default function MenuBar() {
     }
 
     function handleBorderOnEnter(value) {
-        if (value === "college" || value === "shs") {
+        if (value === "csl") {
+            setCslMenu((x) => {
+                return {
+                    ...x,
+                    [value]: true
+                };
+            });
+        } else if (value === "college" || value === "shs") {
             setProgramMenu((x) => {
                 return {
                     ...x,
@@ -76,7 +88,14 @@ export default function MenuBar() {
     }
 
     function handleBorderOnLeave(value) {
-        if (value === "college" || value === "shs") {
+        if (value === "csl") {
+            setCslMenu((x) => {
+                return {
+                    ...x,
+                    [value]: false
+                };
+            });
+        } else if (value === "college" || value === "shs") {
             setProgramMenu((x) => {
                 return {
                     ...x,
@@ -95,17 +114,18 @@ export default function MenuBar() {
 
     return (
         <>
-            <div className="flex flex-row justify-evenly lg:justify-between px-5 lg:h-24">
+            <div className="flex flex-row justify-between h-16 md:h-24 lg:h-28 xl:h-20 items-center lg:justify-between px-5 sticky top-12 xl:top-14 z-50 bg-white">
                 <a href="" className="lg:hidden">
-                    <img src="./mmcm-logo.png" className="w-1/4" alt="" />
+                    <img src="./mmcm-logo.png" className="h-16 md:h-24" alt="" />
                 </a>
-                <a href="" className="hidden lg:flex py-3">
+                <a href="" className="hidden lg:flex py-3 w-1/4 h-auto xl:h-20">
                     <img src="./mmcm-logo2.png" alt="" />
                 </a>
-                <div className="hidden lg:flex justify-center items-center font-medium z-20">
+                <div className="hidden xl:flex justify-center items-center font-medium z-50">
 
-                    <DesktopMenu stateKey={ "about" } state={ subMenu } handlerEnter={ handleBorderOnEnter } handlerLeave={ handleBorderOnLeave }>
-                        <div>
+                    <DesktopMenu more={true} stateKey={ "about" } state={ subMenu } handlerEnter={ handleBorderOnEnter } handlerLeave={ handleBorderOnLeave }>
+                        About
+                        <div href="#">
                             Mapua
                         </div>
                         <div>
@@ -116,77 +136,132 @@ export default function MenuBar() {
                         </div>
                     </DesktopMenu>
 
-                    <div>
-                        <a href="" onMouseEnter={() => { handleBorderOnEnter("admission") }} onMouseLeave={() => { handleBorderOnLeave("admission") }} className={`p-4 transition-border-color ease-in-out duration-300 border-b-4 ${ subMenu["admission"] ? "border-gray-700" : "border-white"}`}>Admission <i className='bx bx-caret-down'></i></a>
-                        <div className={`${ subMenu["admission"] ? "opacity-100" : "opacity-0 invisible"} flex flex-col absolute transition-all ease-out duration-300`} style={{
-                            transform: 'translateY(1.15rem)'
-                        }}>
-                            <a onMouseEnter={() => { handleBorderOnEnter("admission") }} onMouseLeave={() => { handleBorderOnLeave("admission") }} href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                Frequently Asked Questions
-                            </a>
-                            <a onMouseEnter={() => { handleBorderOnEnter("admission") }} onMouseLeave={() => { handleBorderOnLeave("admission") }} href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                Scholarships
-                            </a>
-                            <a onMouseEnter={() => { handleBorderOnEnter("admission") }} onMouseLeave={() => { handleBorderOnLeave("admission") }} href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                Student Testimonies
-                            </a>
-                            <a onMouseEnter={() => { handleBorderOnEnter("admission") }} onMouseLeave={() => { handleBorderOnLeave("admission") }} href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                Protocols for Limited Face-to-Face Classes
-                            </a>
+                    <DesktopMenu more={true} stateKey={"admission"} state={subMenu} handlerEnter={handleBorderOnEnter} handlerLeave={ handleBorderOnLeave }>
+                        Admission
+                        <div>
+                            Frequently Asked Questions
                         </div>
-                    </div>
-                    
-                    <div>
-                        <a href="" onMouseEnter={() => { handleBorderOnEnter("program") }} onMouseLeave={() => { handleBorderOnLeave("program") }} className={`p-4 transition-border-color ease-in-out duration-300 border-b-4 ${ subMenu["program"] ? "border-gray-700" : "border-white"}`}>Program <i className='bx bx-caret-down'></i></a>
-                        <div className={`${ subMenu["program"] ? "opacity-100" : "opacity-0 invisible"} flex flex-col absolute transition-all ease-out duration-300`} style={{
-                            transform: 'translateY(1.15rem)'
-                        }}>
-                            <a onMouseEnter={() => { handleBorderOnEnter("program") }} onMouseLeave={() => { handleBorderOnLeave("program") }} href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                Frequently Asked Questions
-                            </a>
-                            <div className="flex flex-row relative">
-                                <a onMouseEnter={() => { handleBorderOnEnter("program"); handleBorderOnEnter("college") }} onMouseLeave={() => { handleBorderOnLeave("program"); handleBorderOnLeave("college") }} href="" className="flex-1 flex flex-row items-center justify-between p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                    College <i className='bx bx-caret-right'></i>
-                                </a>
-                                <div className={`${ programMenu["college"] ? "opacity-100" : "opacity-0 invisible"} flex flex-col absolute transition-all ease-out duration-300`} style={{
-                                    transform: 'translateX(14.65rem)'
-                                }}>
-                                    <a href="" onMouseEnter={() => { handleBorderOnEnter("program"); handleBorderOnEnter("college") }} onMouseLeave={() => { handleBorderOnLeave("program"); handleBorderOnLeave("college") }} className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300 m-auto">
-                                        Alfonso T. Yuchengco College of Business
-                                    </a>
-                                    <a href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                        College of Arts and Science
-                                    </a>
-                                    <a href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                        College of Computer and Information Science
-                                    </a>
-                                    <a href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                        College of Engineering and Architecture
-                                    </a>
-                                    <a href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                        College of Health Sciences
-                                    </a>
-                                    <a href="" className="p-4 bg-white hover:bg-gray-700 hover:text-white transition-color ease-in-out duration-300">
-                                        MMCM Virtual Lifelong Learning Program
-                                    </a>
-                                </div>
+                        <div>
+                            Scholarships
+                        </div>
+                        <div>
+                            Student Testimonies
+                        </div>
+                        <div>
+                            Protocols for Limited Face-to-Face Classes
+                        </div>
+                    </DesktopMenu>
+
+                    <DesktopMenu more={true} stateKey={"program"} state={subMenu} handlerEnter={handleBorderOnEnter} handlerLeave={handleBorderOnLeave}>
+                        Program
+                        <div>
+                            Junior High School (JHS)
+                        </div>
+                        <div more={true} subStateKey={"shs"} subState={programMenu}>
+                            Senior High School (SHS)
+                            <div href="#">
+                                Humanities and Social Sciences
                             </div>
+                            <div href="#">
+                                Information and Communications Technology
+                            </div>
+                            <div>
+                                Science, Technology, Engineering, and Mathematics
+                            </div>
+                        </div>
+                        <div more={true} subStateKey={"college"} subState={programMenu}>
+                            College
+                            <div href="#">
+                                Alfonso T. Yuchengco College of Business
+                            </div>
+                            <div href="#">
+                                College of Arts and Science
+                            </div>
+                            <div>
+                                College of Computer and Information Science
+                            </div>
+                            <div>
+                                College of Engineering and Architecture
+                            </div>
+                            <div>
+                                College of Health Sciences
+                            </div>
+                            <div>
+                                MMCM Virtual Lifelong Learning Program
+                            </div>
+                        </div>
+                    </DesktopMenu>
+
+                    <DesktopMenu more={true} stateKey={"office"} state={subMenu} handlerEnter={handleBorderOnEnter} handlerLeave={handleBorderOnLeave}>
+                        Offices
+                        <div>
+                            Treasurer&apos;s Office
+                        </div>
+                        <div>
+                            Registrar&apos;s Office
+                        </div>
+                        <div>
+                            Lifelong Learning
+                        </div>
+                        <div>
+                            Center for Health Services and Wellness
+                        </div>
+                        <div>
+                            Guidance and Counseling
+                        </div>
+                        <div>
+                            Office for Research, Development and Innovation
+                        </div>
+                        <div>
+                            Quality Assurance and Enhancement Office
+                        </div>
+                        <div>
+                            Office for Corporate Partnerships
+                        </div>
+                        <div more={ true } subState={cslMenu} subStateKey={"csl"}>
+                            Center for Service-Learning and Community Engagement
+                            <div>
+                                Project H.E.L.P.
+                            </div>
+                        </div>
+                        <div>
+                            Human Resources Management
+                        </div>
+                        <div>
+                            Library
+                        </div>
+                    </DesktopMenu>
+
+                    <DesktopMenu stateKey={"student_life"} state={subMenu} handlerEnter={handleBorderOnEnter} handlerLeave={handleBorderOnLeave}>
+                        Student Life
+                    </DesktopMenu>
+
+                    <DesktopMenu stateKey={"news"} state={subMenu} handlerEnter={handleBorderOnEnter} handlerLeave={handleBorderOnLeave}>
+                        News
+                    </DesktopMenu>
+
+                    <DesktopMenu stateKey={"sustainability"} state={subMenu} handlerEnter={handleBorderOnEnter} handlerLeave={handleBorderOnLeave}>
+                        Sustainability
+                    </DesktopMenu>
+
+                    <div className="flex flex-row gap-2 ml-3">
+                        <div>
+                            <a href="" className="p-4 text-white bg-red-600 hover:bg-red-700 transition-colors ease-in-out duration-300 text-sm border-b-4 border-white">Ask Us</a>
+                        </div>
+                        <div>
+                            <a href="" className="p-4 text-white bg-blue-800 hover:bg-blue-900 transition-colors ease-in-out duration-300 text-sm border-b-4 border-white">Apply Now</a>
                         </div>
                     </div>
 
-                    <a href="" className="p-4">Offices <i className='bx bx-caret-down'></i></a>
-                    <a href="" className="p-4">Student Life</a>
-                    <a href="" className="p-4">News</a>
-                    <a href="" className="p-4">Sustainability</a>
                 </div>
-                <button onClick={handleMenu} className="flex flex-col gap-1 justify-center items-start lg:hidden">
+                <button onClick={handleMenu} className="flex flex-col gap-1 justify-center items-start xl:hidden z-50">
                     <span className={`w-8 h-1.5 bg-gray-900 transition ease-in-out duration-300 rounded ${ menu ? "rotate-45 translate-y-2.5" : "" }`}></span>
                     <span className={`h-1.5 bg-gray-900 transition-width ease-in-out duration-300 rounded ${menu ? "w-0" : "w-8" }`}></span>
                     <span className={`w-8 h-1.5 bg-gray-900 transition ease-in-out duration-300 rounded ${ menu ? "-rotate-45 -translate-y-2.5" : "" }`}></span>
                 </button>
             </div>
-            <div className="lg:hidden">
-                <div className={`relative  h-0 w-screen bg-opacity-90 transition ease-in-out duration-300 text-sm ${menu ? "" : "-translate-x-full"} max-w-full z-20`}>
+            <div className="xl:hidden">
+                <div className={`fixed mt-4 top-24 md:top-32 md:mt-4 lg:top-36 lg:mt-4 h-0 w-screen bg-opacity-90 transition ease-in-out duration-300 text-sm ${menu ? "" : "-translate-x-full"} max-w-full z-50`}>
                     <div className="flex flex-col bg-gray-900">
                     
                         <MobileMenu href="#" more={true} label="About" stateKey="about" state={subMenu} handler={handleSubMenu} >
