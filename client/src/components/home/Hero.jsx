@@ -35,7 +35,7 @@ export default function Hero() {
     }, [currentIndex]);
 
     return (
-        <div className="relative flex overflow-hidden mt-12" style={{ height: '55vw'}}>
+        <div className="relative flex overflow-hidden" style={{ height: '55vw'}}>
             <button
                 className="absolute left-0 h-full bg-slate-200 bg-opacity-30 z-10 flex items-center justify-center"
                 onClick={handlePrevious}

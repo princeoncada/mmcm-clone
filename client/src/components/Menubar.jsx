@@ -114,7 +114,7 @@ export default function Menubar() {
 
     return (
         <>
-            <div className="flex flex-row justify-between h-16 md:h-24 lg:h-28 xl:h-20 items-center lg:justify-between px-5 sticky top-12 xl:top-14 z-50 bg-white">
+            <div className="flex flex-row justify-between h-16 md:h-24 lg:h-28 xl:h-20 items-center lg:justify-between px-5 top-12 xl:top-14 z-50 bg-white">
                 <a href="" className="lg:hidden">
                     <img src="./mmcm-logo.png" className="h-16 md:h-24" alt="" />
                 </a>
@@ -261,7 +261,7 @@ export default function Menubar() {
                 </button>
             </div>
             <div className="xl:hidden">
-                <div className={`fixed mt-4 top-24 md:top-32 md:mt-4 lg:top-36 lg:mt-4 h-0 w-screen bg-opacity-90 transition ease-in-out duration-300 text-sm ${menu ? "" : "-translate-x-full"} max-w-full z-50`}>
+                <div className={`absolute mt-4 top-24 md:top-32 md:mt-4 lg:top-36 lg:mt-4 h-0 w-screen bg-opacity-90 transition ease-in-out duration-300 text-sm ${menu ? "" : "-translate-x-full"} max-w-full z-50`}>
                     <div className="flex flex-col bg-gray-900">
                     
                         <MobileMenu href="#" more={true} label="About" stateKey="about" state={subMenu} handler={handleSubMenu} >
