@@ -3,7 +3,7 @@ import { useState } from "react";
 import MobileMenu from "./menubar/MobileMenu.jsx";
 import DesktopMenu from "./menubar/DesktopMenu.jsx";
 
-export default function MenuBar() {
+export default function Menubar() {
     const [menu, setMenu] = useState(false);
     const [subMenu, setSubMenu] = useState({
         about: false,
